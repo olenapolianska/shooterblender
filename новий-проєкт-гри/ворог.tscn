@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc1ctcg0pw16s"]
+
+[ext_resource type="PackedScene" uid="uid://c3lgqh4xwjaj8" path="res://ворог.glb" id="1_uw5ec"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0lmk"]
+size = Vector3(2.87781, 3.83972, 3.94443)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.332739, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.938904, 1.41986, -1.10326)
+shape = SubResource("BoxShape3D_b0lmk")
+
+[node name="ворог" parent="." instance=ExtResource("1_uw5ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.379268, 0.134807, -1.14703)
