@@ -1,7 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://deyc1jkw3jkib"]
 
-[ext_resource type="PackedScene" uid="uid://bms3c4tw3e23" path="res://untitled.glb" id="1_ae71s"]
 [ext_resource type="PackedScene" uid="uid://bc1ctcg0pw16s" path="res://ворог.tscn" id="2_xvhwe"]
+[ext_resource type="PackedScene" uid="uid://vetanu30kk4m" path="res://player_17.glb" id="3_n7cye"]
+[ext_resource type="PackedScene" uid="uid://b3wgrka3ph5vd" path="res://house.tscn" id="3_xyqjk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1sw6e"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,13 +20,10 @@ tonemap_mode = 2
 size = Vector3(25, 1, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tb371"]
-size = Vector3(20, 1, 20)
+size = Vector3(26.256, 2.07117, 27.0707)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xnuob"]
-radius = 2.92803
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_481id"]
-size = Vector3(27.6059, 2.67731, 29.0723)
+[sub_resource type="SphereShape3D" id="SphereShape3D_s1oqg"]
+radius = 2.49222
 
 [node name="Node3D" type="Node3D"]
 
@@ -43,25 +41,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00194097, 0.162945, -0.100
 mesh = SubResource("BoxMesh_qmlu4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154198, 0.738207, -0.634926)
 shape = SubResource("BoxShape3D_tb371")
-
-[node name="untitled" parent="." instance=ExtResource("1_ae71s")]
-transform = Transform3D(0.903073, 0, -0.429487, 0, 1, 0, 0.429487, 0, 0.903073, -0.0296082, 6.78239, -1.75984)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="untitled"]
-shape = SubResource("SphereShape3D_xnuob")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(0.961467, -0.0753209, -0.264402, 0.118428, 0.981403, 0.151074, 0.248105, -0.176566, 0.952507, 0.538534, 3.55742, 1.1808)
+transform = Transform3D(0.992637, -0.12091, 0.0073173, 0.118428, 0.981403, 0.151074, -0.0254482, -0.149096, 0.988496, -0.382026, 6.49401, -0.610412)
+shape = SubResource("SphereShape3D_s1oqg")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(0.999836, -0.0180981, 0, 0.0180981, 0.999836, 0, 0, 0, 1, -0.27137, 8.71737, 1.2762)
+transform = Transform3D(-0.993893, -0.0943706, 0.0571982, -0.043329, 0.810433, 0.584226, -0.101489, 0.57818, -0.809573, 0.287976, 7.8474, -0.327551)
 
 [node name="CharacterBody3D" parent="CharacterBody3D" instance=ExtResource("2_xvhwe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47764, 3.58617, 5.87234)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386429, 0.838654, -0.729492)
-shape = SubResource("BoxShape3D_481id")
+[node name="house" parent="." instance=ExtResource("3_xyqjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.10763, 0.191599, 8.6019)
+
+[node name="house2" parent="." instance=ExtResource("3_xyqjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89629, 0.686301, 1.99786)
+
+[node name="house4" parent="." instance=ExtResource("3_xyqjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.18025, 0.695929, -5.76049)
+
+[node name="house5" parent="." instance=ExtResource("3_xyqjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06729, 0.566625, -11.3673)
+
+[node name="player_17" parent="." instance=ExtResource("3_n7cye")]
+transform = Transform3D(-0.0120774, 0, -0.999927, 0, 1, 0, 0.999927, 0, -0.0120774, -0.684366, 6.75986, -0.860765)
