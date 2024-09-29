@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://deyc1jkw3jkib"]
+[gd_scene load_steps=11 format=3 uid="uid://deyc1jkw3jkib"]
 
+[ext_resource type="PackedScene" uid="uid://dkht8s1abt6yv" path="res://bullet.tscn" id="1_xvyvr"]
 [ext_resource type="PackedScene" uid="uid://bc1ctcg0pw16s" path="res://ворог.tscn" id="2_xvhwe"]
-[ext_resource type="PackedScene" uid="uid://vetanu30kk4m" path="res://player_17.glb" id="3_n7cye"]
 [ext_resource type="PackedScene" uid="uid://b3wgrka3ph5vd" path="res://house.tscn" id="3_xyqjk"]
+[ext_resource type="PackedScene" uid="uid://boxnyc4jajjt4" path="res://player_17gun.glb" id="4_p0vje"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1sw6e"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,6 +45,9 @@ mesh = SubResource("BoxMesh_qmlu4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.154198, 0.738207, -0.634926)
 shape = SubResource("BoxShape3D_tb371")
 
+[node name="RigidBody3D" parent="StaticBody3D" instance=ExtResource("1_xvyvr")]
+transform = Transform3D(0.0812404, -0.00755739, -0.996666, 0.000613971, 0.999971, -0.0075323, 0.996694, -1.7838e-11, 0.0812428, 0.879108, 5.0823, 1.34386)
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -68,5 +72,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.18025, 0.695929, -5.76049)
 [node name="house5" parent="." instance=ExtResource("3_xyqjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06729, 0.566625, -11.3673)
 
-[node name="player_17" parent="." instance=ExtResource("3_n7cye")]
-transform = Transform3D(-0.0120774, 0, -0.999927, 0, 1, 0, 0.999927, 0, -0.0120774, -0.684366, 6.75986, -0.860765)
+[node name="player_17gun" parent="." instance=ExtResource("4_p0vje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.49723, 0)
+
+[node name="Skeleton3D" parent="player_17gun/Armature" index="0"]
+bones/0/position = Vector3(-0.0326474, 0.169455, 0.0537192)
+bones/1/position = Vector3(-0.0915156, -0.040924, -0.47099)
+bones/1/rotation = Quaternion(0.0861157, -0.0672626, 0.993491, -0.0321652)
+bones/3/position = Vector3(-0.120615, -0.0743886, 0.396891)
+bones/3/rotation = Quaternion(0.0824438, 0.0717196, 0.993803, -0.0203767)
+bones/5/position = Vector3(0.253375, 0.045349, 1.06816)
+bones/5/rotation = Quaternion(0.0788132, 0.125858, 0.987422, 0.0542719)
+bones/6/position = Vector3(0.234165, 0.0641428, -1.07378)
+bones/6/rotation = Quaternion(0.0671163, -0.132466, 0.988286, 0.0351916)
+bones/7/position = Vector3(0.332682, 0.0743557, 1.06356)
+bones/7/rotation = Quaternion(-2.03799e-07, -5.28576e-09, -0.999999, 0.00155121)
+bones/7/scale = Vector3(0.707527, 0.707527, 0.707527)
+
+[node name="Cube" parent="player_17gun/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.0158923, 0.0493379, -5.13768e-05, 0.188107, 0.00416835, 0.00060811, 0.00254428, -1.42771e-10, -0.0452803, 0.172593, -0.327218, 1.06445)
+
+[node name="RayCast3D" type="RayCast3D" parent="player_17gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691565, -0.392516, 1.29715)
+
+[editable path="player_17gun"]
