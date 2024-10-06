@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://deyc1jkw3jkib"]
+[gd_scene load_steps=12 format=3 uid="uid://deyc1jkw3jkib"]
 
 [ext_resource type="PackedScene" uid="uid://dkht8s1abt6yv" path="res://bullet.tscn" id="1_xvyvr"]
-[ext_resource type="PackedScene" uid="uid://bc1ctcg0pw16s" path="res://ворог.tscn" id="2_xvhwe"]
-[ext_resource type="PackedScene" uid="uid://b3wgrka3ph5vd" path="res://house.tscn" id="3_xyqjk"]
+[ext_resource type="Script" path="res://character_body_3d.gd" id="2_latjn"]
+[ext_resource type="PackedScene" uid="uid://b7tkmon7k57f7" path="res://tree.glb" id="4_oncbe"]
 [ext_resource type="PackedScene" uid="uid://boxnyc4jajjt4" path="res://player_17gun.glb" id="4_p0vje"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1sw6e"]
@@ -18,13 +18,16 @@ sky = SubResource("Sky_b2t3w")
 tonemap_mode = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_qmlu4"]
-size = Vector3(25, 1, 25)
+size = Vector3(35, 1, 35)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tb371"]
 size = Vector3(26.256, 2.07117, 27.0707)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s1oqg"]
 radius = 2.49222
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pt5dg"]
+radius = 2.90649
 
 [node name="Node3D" type="Node3D"]
 
@@ -49,33 +52,19 @@ shape = SubResource("BoxShape3D_tb371")
 transform = Transform3D(0.0812404, -0.00755739, -0.996666, 0.000613971, 0.999971, -0.0075323, 0.996694, -1.7838e-11, 0.0812428, 0.879108, 5.0823, 1.34386)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_latjn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(0.992637, -0.12091, 0.0073173, 0.118428, 0.981403, 0.151074, -0.0254482, -0.149096, 0.988496, -0.382026, 6.49401, -0.610412)
 shape = SubResource("SphereShape3D_s1oqg")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-0.993893, -0.0943706, 0.0571982, -0.043329, 0.810433, 0.584226, -0.101489, 0.57818, -0.809573, 0.287976, 7.8474, -0.327551)
+transform = Transform3D(-0.0814168, 0.579966, -0.810562, -0.043329, 0.810433, 0.584227, 0.995738, 0.0826868, -0.0408538, 0.287976, 7.8474, -0.327551)
 
-[node name="CharacterBody3D" parent="CharacterBody3D" instance=ExtResource("2_xvhwe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47764, 3.58617, 5.87234)
-
-[node name="house" parent="." instance=ExtResource("3_xyqjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.10763, 0.191599, 8.6019)
-
-[node name="house2" parent="." instance=ExtResource("3_xyqjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89629, 0.686301, 1.99786)
-
-[node name="house4" parent="." instance=ExtResource("3_xyqjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.18025, 0.695929, -5.76049)
-
-[node name="house5" parent="." instance=ExtResource("3_xyqjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06729, 0.566625, -11.3673)
-
-[node name="player_17gun" parent="." instance=ExtResource("4_p0vje")]
+[node name="player_17gun" parent="CharacterBody3D" instance=ExtResource("4_p0vje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.49723, 0)
 
-[node name="Skeleton3D" parent="player_17gun/Armature" index="0"]
+[node name="Skeleton3D" parent="CharacterBody3D/player_17gun/Armature" index="0"]
 bones/0/position = Vector3(-0.0326474, 0.169455, 0.0537192)
 bones/1/position = Vector3(-0.0915156, -0.040924, -0.47099)
 bones/1/rotation = Quaternion(0.0861157, -0.0672626, 0.993491, -0.0321652)
@@ -89,10 +78,19 @@ bones/7/position = Vector3(0.332682, 0.0743557, 1.06356)
 bones/7/rotation = Quaternion(-2.03799e-07, -5.28576e-09, -0.999999, 0.00155121)
 bones/7/scale = Vector3(0.707527, 0.707527, 0.707527)
 
-[node name="Cube" parent="player_17gun/Armature/Skeleton3D" index="0"]
+[node name="Cube" parent="CharacterBody3D/player_17gun/Armature/Skeleton3D" index="0"]
 transform = Transform3D(-0.0158923, 0.0493379, -5.13768e-05, 0.188107, 0.00416835, 0.00060811, 0.00254428, -1.42771e-10, -0.0452803, 0.172593, -0.327218, 1.06445)
 
-[node name="RayCast3D" type="RayCast3D" parent="player_17gun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691565, -0.392516, 1.29715)
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691565, 5.10471, 1.29715)
 
-[editable path="player_17gun"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97219, 2.20865, -9.58411)
+shape = SubResource("SphereShape3D_pt5dg")
+
+[node name="tree" parent="StaticBody3D2" instance=ExtResource("4_oncbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.80323, 0.453406, -9.6042)
+
+[editable path="CharacterBody3D/player_17gun"]
