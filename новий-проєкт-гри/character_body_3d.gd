@@ -13,6 +13,14 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ray = $RayCast3D
 
 var GUN = false
+var rot_y = 0.0
+var rot_x = 0.0
+var rot = 0.1
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,6 +47,14 @@ func _physics_process(delta):
 
 
 func _input(event):
+	
+	if event is  InputEventMouseMotion:
+		rot_y -= event.relative.x * rot
+		rot_x -= event.relative.y * rot
+		transform.basis = Basis(Vector3(0,1,0), rot_y)
+		
+	if Input.is_action_just_pressed("mouse_change"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if Input.is_action_just_pressed("get_gun"):
 		anima_player.play("ArmatureAction_001")
 		GUN = true
