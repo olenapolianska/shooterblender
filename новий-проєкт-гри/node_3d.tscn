@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://deyc1jkw3jkib"]
+[gd_scene load_steps=19 format=3 uid="uid://deyc1jkw3jkib"]
 
 [ext_resource type="PackedScene" uid="uid://dkht8s1abt6yv" path="res://bullet.tscn" id="1_xvyvr"]
 [ext_resource type="Script" path="res://character_body_3d.gd" id="2_latjn"]
 [ext_resource type="PackedScene" uid="uid://boxnyc4jajjt4" path="res://player_17gun.glb" id="4_p0vje"]
 [ext_resource type="PackedScene" uid="uid://dt2ah3ywb5wfu" path="res://GARDEN3.glb" id="4_sr2lq"]
 [ext_resource type="PackedScene" uid="uid://cojcvenqeyh28" path="res://tree3.glb" id="5_4myfu"]
+[ext_resource type="PackedScene" uid="uid://d1vbx4ne47roq" path="res://home2.glb" id="6_ua7b3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1sw6e"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,7 +20,7 @@ sky = SubResource("Sky_b2t3w")
 tonemap_mode = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_qmlu4"]
-size = Vector3(37, 1, 30)
+size = Vector3(35, 1, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tb371"]
 size = Vector3(26.256, 2.07117, 27.0707)
@@ -42,6 +43,9 @@ size = Vector3(3.40906, 7.04828, 4.54688)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_403sd"]
 size = Vector3(4.315, 6.66028, 4.14072)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20rkb"]
+size = Vector3(8.50146, 7.92068, 5.59229)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(0.0345507, 0, 0.999403, 0, 1, 0, -0.999403, 0, 0.0345507, 0, 0, 0)
@@ -108,10 +112,10 @@ shape = SubResource("SphereShape3D_pt5dg")
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 
 [node name="GARDEN3" parent="StaticBody3D3" instance=ExtResource("4_sr2lq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31271, 1.77379, 3.83618)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990769, 0.893792, 1.37836)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37363, 3.64556, 1.64479)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390224, 3.64556, 1.61838)
 shape = SubResource("BoxShape3D_2knlv")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
@@ -140,5 +144,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84318, -1.84636, 9.18156)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54639, 2.83014, 9.60689)
 shape = SubResource("BoxShape3D_403sd")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="."]
+
+[node name="home2" parent="StaticBody3D7" instance=ExtResource("6_ua7b3")]
+transform = Transform3D(0.999588, 0, 0.0286717, 0, 1, 0, -0.0286717, 0, 0.999588, 9.79899, 0.321607, -5.73932)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
+transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -3.72529e-09, 0, 1, 10.2697, 3.46034, -4.87238)
+shape = SubResource("BoxShape3D_20rkb")
 
 [editable path="CharacterBody3D/player_17gun"]
